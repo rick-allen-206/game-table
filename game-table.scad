@@ -18,6 +18,8 @@ depth_from_top = 6 ; // the depth that the gamespace should be from the top (the
 support_x = 1; // the width of the support boards on the x axis.
 support_y = 1; // the width of the support boards on the y axis.
 
+leg_support_z = 4; // the width of the support boards that run between table legs
+
 tv_cutout_x = 36; // the x dimention of the tv cutout.
 tv_cutout_y = 24;// the y dimention of the tv cutout.
 
@@ -132,4 +134,41 @@ translate([
   0 + table_leg_z/2 + depth_from_top/2
 ]) {
   table_leg();
+}
+
+// add table supports -----------------------------------------------------------------------------
+translate([
+  0, 
+  0 - outter_y/2 + table_leg_y/2 + support_y, 
+  0 + table_leg_z + depth_from_top - leg_support_z/2
+]) {
+  color("cyan")
+  cube([outter_x - table_leg_x * 4 - support_x * 2, 1, leg_support_z], center = true);
+}
+
+translate([
+  0, 
+  0 + outter_y/2 - table_leg_y/2 - support_y, 
+  0 + table_leg_z + depth_from_top - leg_support_z/2
+]) {
+  color("cyan")
+  cube([outter_x - table_leg_x * 4 - support_x * 2, 1, leg_support_z], center = true);
+}
+
+translate([
+  0 - outter_x/2 + table_leg_x + support_x, 
+  0, 
+  0 + table_leg_z + depth_from_top - leg_support_z/2
+]) {
+  color("cyan")
+  cube([1, outter_y - table_leg_y * 2 - support_y * 2, leg_support_z], center = true);
+}
+
+translate([
+  0 + outter_x/2 - table_leg_x - support_x, 
+  0, 
+  0 + table_leg_z + depth_from_top - leg_support_z/2
+]) {
+  color("cyan")
+  cube([1, outter_y - table_leg_y * 2 - support_y * 2, leg_support_z], center = true);
 }
