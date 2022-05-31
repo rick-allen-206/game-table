@@ -13,7 +13,7 @@ outter_y_diff = 6; // the difference between the outter and the inner y values o
 
 top_z = 2; // z value of the top boards (the thing that acts like arm rests that cup holders will go in, ect). Should be < depth_from_top var
 drop_z = 1;
-depth_from_top = 6 ; // the depth that the gamespace should be from the top (the highest/topmost point of the table).
+depth_from_top = 3 ; // the depth that the gamespace should be from the top (the highest/topmost point of the table).
 
 support_x = 1; // the width of the support boards on the x axis.
 support_y = 1; // the width of the support boards on the y axis.
