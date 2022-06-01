@@ -33,10 +33,12 @@ module table_leg(x = table_leg_x, y = table_leg_y, z = table_leg_z) {
   translate([0-x/2, 0, 0]) {
     color("red")
     cube([x, y, z + depth_from_top], center=true);
+    echo("Leg_Part_1", x, y, z + depth_from_top);
   }
   translate([0+x/2, 0, 0]) {
     color("blue")
     cube([x, y, z + depth_from_top], center=true);
+    echo("Leg_Part_1", x, y, z + depth_from_top);
   }
 }
 
@@ -47,6 +49,7 @@ translate([0, 0, table_leg_z + depth_from_top + top_z/2]) {
   color("purple")
   difference() {
     cube([outter_x, outter_y, top_z], center = true);
+    echo("Tablestop", outter_x, outter_y, top_z);
     cube([inner_x, inner_y, top_z + .5], center = true);
   }
 };
@@ -58,36 +61,44 @@ translate([0, 0, table_leg_z + depth_from_top + top_z/2]) {
   translate([0 - outter_x/2 + support_x/2, 0, table_leg_z + depth_from_top/2 + top_z/2 - drop_z/2]) {
     color("green")
     cube([support_x, outter_y, depth_from_top - top_z + drop_z], center = true);
+    echo("Outter Tabletop Support", support_x, outter_y, depth_from_top - top_z + drop_z);
   };
   translate([0 + outter_x/2 - support_x/2, 0, table_leg_z + depth_from_top/2 + top_z/2 - drop_z/2]) {
     color("green")
     cube([support_x, outter_y, depth_from_top - top_z + drop_z], center = true);
+    echo("Outter Tabletop Support", support_x, outter_y, depth_from_top - top_z + drop_z);
   };
   translate([0, 0 - outter_y/2 + support_y/2, table_leg_z + depth_from_top/2 + top_z/2 - drop_z/2]) {
     color("green")
     cube([outter_x, support_y, depth_from_top - top_z + drop_z], center = true);
+    echo("Outter Tabletop Support", outter_x, support_y, depth_from_top - top_z + drop_z);
   };
   translate([0, 0 + outter_y/2 - support_y/2, table_leg_z + depth_from_top/2 + top_z/2 - drop_z/2]) {
     color("green")
     cube([outter_x, support_y, depth_from_top - top_z + drop_z], center = true);
+    echo("Outter Tabletop Support", outter_x, support_y, depth_from_top - top_z + drop_z);
   };
 
   // inner supports
   translate([0 - inner_x/2 - support_x/2, 0, table_leg_z + depth_from_top/2 + top_z/2]) {
     color("yellow")
     cube([support_x, inner_y + support_y * 2, depth_from_top - top_z], center = true);
+    echo("Inner Tabletop Support", support_x, inner_y + support_y * 2, depth_from_top - top_z);
   };
   translate([0 + inner_x/2 + support_x/2, 0, table_leg_z + depth_from_top/2 + top_z/2]) {
     color("yellow")
     cube([support_x, inner_y + support_y * 2, depth_from_top - top_z], center = true);
+    echo("Inner Tabletop Support", support_x, inner_y + support_y * 2, depth_from_top - top_z);
   };
   translate([0, 0 - inner_y/2 - support_y/2, table_leg_z + depth_from_top/2 + top_z/2]) {
     color("yellow")
     cube([inner_x + support_x * 2, support_y, depth_from_top - top_z], center = true);
+    echo("Inner Tabletop Support", inner_x + support_x * 2, support_y, depth_from_top - top_z);
   };
   translate([0, 0 + inner_y/2 + support_y/2, table_leg_z + depth_from_top/2 + top_z/2]) {
     color("yellow")
     cube([inner_x + support_x * 2, support_y, depth_from_top - top_z], center = true);
+    echo("Inner Tabletop Support", inner_x + support_x * 2, support_y, depth_from_top - top_z);
   };
 
 
@@ -97,6 +108,7 @@ translate([0, 0, table_leg_z + depth_from_top + top_z - depth_from_top - drop_z/
   color("orange")
   difference() {
     cube([inner_x + support_x * 2, inner_y + support_y * 2, drop_z], center = true);
+    echo("Drop Tabletop Space", inner_x + support_x * 2, inner_y + support_y * 2, drop_z);
     cube([tv_cutout_x, tv_cutout_y, drop_z + .5], center = true);
   }
 };
@@ -136,7 +148,8 @@ translate([
   table_leg();
 }
 
-// add table supports -----------------------------------------------------------------------------
+// add leg supports -----------------------------------------------------------------------------
+// TODO: create a variable for support width
 translate([
   0, 
   0 - outter_y/2 + table_leg_y/2 + support_y, 
@@ -144,6 +157,7 @@ translate([
 ]) {
   color("cyan")
   cube([outter_x - table_leg_x * 4 - support_x * 2, 1, leg_support_z], center = true);
+  echo("Table Leg Support", outter_x - table_leg_x * 4 - support_x * 2, 1, leg_support_z);
 }
 
 translate([
@@ -153,6 +167,7 @@ translate([
 ]) {
   color("cyan")
   cube([outter_x - table_leg_x * 4 - support_x * 2, 1, leg_support_z], center = true);
+  echo("Table Leg Support", outter_x - table_leg_x * 4 - support_x * 2, 1, leg_support_z);
 }
 
 translate([
@@ -162,6 +177,7 @@ translate([
 ]) {
   color("cyan")
   cube([1, outter_y - table_leg_y * 2 - support_y * 2, leg_support_z], center = true);
+  echo("Table Leg Support", 1, outter_y - table_leg_y * 2 - support_y * 2, leg_support_z);
 }
 
 translate([
@@ -171,4 +187,5 @@ translate([
 ]) {
   color("cyan")
   cube([1, outter_y - table_leg_y * 2 - support_y * 2, leg_support_z], center = true);
+  echo("Table Leg Support", 1, outter_y - table_leg_y * 2 - support_y * 2, leg_support_z);
 }
